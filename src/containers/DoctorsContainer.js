@@ -24,7 +24,6 @@ DoctorsContainer.propTypes = propTypes;
 function mapStateToProps(state) {
   const { authed, entities, environment, navigator } = state;
   const { height, isMobile } = environment;
-  // const { doctors } = entities;
   const { query } = navigator.route;
 
   let filters = query && query.q ? query.q : 'location';

@@ -7,6 +7,7 @@ import DoctorsContainer from './DoctorsContainer';
 import { initEnvironment } from '../actions/EnvironmentActions';
 import { initAuth } from '../actions/AuthedActions';
 import { initNavigator } from '../actions/NavigatorActions';
+import { initSettings } from '../actions/SettingsActions';
 
 class AppContainer extends Component {
 
@@ -15,6 +16,7 @@ class AppContainer extends Component {
     dispatch(initEnvironment());
     dispatch(initAuth());
     dispatch(initNavigator());
+    dispatch(initSettings());
   }
 
   renderContent() {
