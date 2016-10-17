@@ -22,14 +22,12 @@ class DoctorsContainer extends Component {
 DoctorsContainer.propTypes = propTypes;
 
 function mapStateToProps(state) {
-  const { authed, entities, environment, navigator } = state;
+  const { authed, settings, entities, environment, navigator } = state;
   const { height, isMobile } = environment;
   const { query } = navigator.route;
-
-  let filters = query && query.q ? query.q : 'location';
+  const { filters } = settings;
 
   return {
-    filters,
     authed,
     height,
     isMobile,

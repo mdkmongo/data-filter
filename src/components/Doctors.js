@@ -3,25 +3,19 @@ import React, { Component, PropTypes } from 'react';
 
 // import DoctorItems from '../components/DoctorItems';
 import Stickify from '../components/Stickify';
-// import FilterBar from '../components/FilterBar';
+import FilterBarContainer from '../containers/FilterBarContainer';
 
 class Doctors extends Component {
   componentWillMount() {
-    const { dispatch, filters } = this.props;
   }
 
   render() {
     const {
-      authed,
-      dispatch,
-      height,
-      filters,
       sticky,
-      doctors,
     } = this.props;
-
     return (
       <div className={`doctors ${(sticky ? 'sticky' : '')}`} >
+      <FilterBarContainer />
         <div className="container">
           Doctor Items here
         </div>
