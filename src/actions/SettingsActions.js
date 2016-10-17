@@ -6,22 +6,27 @@ const filters = [
     type: 'Checkbox',
     options: [
       {
+        id: 1,
         value: 'Cash/Credit',
         label: 'Cash/Credit',
       },
       {
+        id: 2,
         value: 'Medicare',
         label: 'Medicare',
       },
       {
+        id: 3,
         value: 'Medicaid',
         label: 'Medicaid',
       },
       {
+        id: 4,
         value: 'Private insurance',
         label: 'Private insurance',
       },
       {
+        id: 5,
         value: 'Sliding scale',
         label: 'Sliding scale',
       }
@@ -32,10 +37,12 @@ const filters = [
     type: 'Select',
     options: [
       {
+        id: 6,
         value: 'english',
         label: 'English',
       },
       {
+        id: 7,
         value: 'spanish',
         label: 'Spanish',
       }
@@ -46,10 +53,12 @@ const filters = [
     type: 'Select',
     options: [
       {
+        id: 8,
         value: 'yes',
         label: 'Yes',
       },
       {
+        id: 9,
         value: 'no',
         label: 'No',
       }

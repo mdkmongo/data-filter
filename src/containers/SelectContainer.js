@@ -19,7 +19,7 @@ class SelectContainer extends Component {
   }
   render() {
     return (
-      <Select { ...this.props } joinValues={true} value={this.state.selected} onChange={this.onSelect} />
+      <Select { ...this.props } value={this.state.selected} onChange={this.onSelect} />
     )
   }
 }
