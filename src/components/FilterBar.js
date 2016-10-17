@@ -1,18 +1,26 @@
 import React, { Component, PropTypes } from 'react';
 
-import Select from 'react-select';
+import SelectContainer from '../containers/SelectContainer';
+
+import { isArray } from 'lodash';
 
 
 class FilterBar extends Component {
 
+  activeFilters=[]; 
+
+  handleChange = (name, values) => {
+    this.activeFilters[name] = values
+  }
+
   renderContent() {
     return (
       this.props.filters.map(filter =>
-        <Select
+        <SelectContainer
           name={filter.name}
-          value={""}
           options={filter.options}
           multi={filter.type == 'Checkbox' ? true : false}
+          handleChange={this.handleChange}
         />
       )
     )
