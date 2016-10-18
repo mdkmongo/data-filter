@@ -30,17 +30,36 @@ class DoctorsContainer extends Component {
 
 DoctorsContainer.propTypes = propTypes;
 
+const getFilteredListings = (listings, activeFilters, filters) => {
+  let temp = listings;
+  activeFilters.map((filter) => {
+    if (filter) {
+      temp = filterListings(temp, filters[filter])
+    } 
+  })
+  return temp;
+}
+
+const filterListings = (listings, filter) => {
+  return listings.filter((listing) => {
+    return listing[filter.name] === filter.value;
+  })
+}
+
 function mapStateToProps(state) {
-  const { authed, settings, entities, environment, navigator } = state;
+  const { authed, settings, entities, environment, navigator, doctors, activeFilters, filters } = state;
   const { height, isMobile } = environment;
   const { query } = navigator.route;
-  const { filters } = settings;
+  const { listings } = doctors;
+  const { loading } = doctors;
+  const { error } = doctors;
 
   return {
     authed,
     height,
     isMobile,
-    // doctors,
+    listings,
+    filteredListings: getFilteredListings(listings, activeFilters.filters, filters)
   };
 }
 

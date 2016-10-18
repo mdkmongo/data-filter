@@ -14,7 +14,6 @@ export default function fetchDoctorsRequest(siteID) {
 }
 
 function fetchDoctorsSuccess(json) {
-  console.log(json);
   return {
     type: types.FETCH_DOCTORS_SUCCESS,
     doctors: json,
