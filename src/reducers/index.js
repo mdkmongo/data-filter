@@ -2,7 +2,6 @@ import { combineReducers } from 'redux';
 import { message } from '../reducers/message';
 import authed from '../reducers/authed';
 import doctors from '../reducers/doctors';
-import entities from '../reducers/entities';
 import environment from '../reducers/environment';
 import navigator from '../reducers/navigator';
 import settings from '../reducers/settings';
@@ -12,7 +11,6 @@ import filters from '../reducers/filters';
 const rootReducer = combineReducers({
   authed,
   doctors,
-  entities,
   filters,
   environment,
   activeFilters,

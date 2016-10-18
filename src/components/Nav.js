@@ -9,7 +9,7 @@ class Nav extends Component {
   render() {
     return (
       <div className="nav">
-        NEA: HCPD
+        <h5>National Eczema Association</h5>
       </div>
     )
   }

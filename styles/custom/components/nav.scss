@@ -1,4 +1,14 @@
 .nav {
   height: 50px;
-  padding: 40px 80px;
+  background-color: #3a3f41;
+  align-items: center;
+  position: relative;
+
+  h5 {
+    color: #fff;
+    max-width: 80%;
+    margin: auto;
+    @include centerer();
+    left:15%;
+  }
 }

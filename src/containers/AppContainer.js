@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 
 import NavContainer from './NavContainer';
 import DoctorsContainer from './DoctorsContainer';
+import Header from '../components/Header';
 
 import { initEnvironment } from '../actions/EnvironmentActions';
 import { initAuth } from '../actions/AuthedActions';
@@ -45,6 +46,7 @@ class AppContainer extends Component {
     return (
       <div>
         <NavContainer />
+        <Header head={'Health Care Provider Directory'} subhead={'Find a health care provider with experience treating Eczema'} />
         {this.renderContent()}
       </div>
     )

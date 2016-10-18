@@ -1,5 +1,12 @@
 @import 'components/react-select';
 @import 'components/reset';
 @import './fonts';
+@import './mixins';
+@import './colors';
+@import './tags';
+@import './containers';
 @import 'components/nav';
 @import 'components/doctors';
+@import 'components/doctor-item';
+@import 'components/label';
+@import 'components/header';

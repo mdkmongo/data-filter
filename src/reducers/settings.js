@@ -23,13 +23,13 @@ const initialState = {
       },
       {
         id: 4,
-        value: 'Private insurance',
-        label: 'Private insurance',
+        value: 'Private Insurance',
+        label: 'Private Insurance',
       },
       {
         id: 5,
-        value: 'Sliding scale',
-        label: 'Sliding scale',
+        value: 'Sliding Scale',
+        label: 'Sliding Scale',
       }
     ]
   },

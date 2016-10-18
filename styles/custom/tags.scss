@@ -1,0 +1,8 @@
+a {
+  font-weight: 600;
+  text-decoration: none;
+  transition: opacity .4s ease;
+  &:hover {
+    opacity: .8;
+  }
+}

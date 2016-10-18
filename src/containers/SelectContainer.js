@@ -19,7 +19,10 @@ class SelectContainer extends Component {
   }
   render() {
     return (
-      <Select { ...this.props } value={this.state.selected} onChange={this.onSelect} />
+      <div className="space">
+        <p className="label">{this.props.name}</p>
+        <Select { ...this.props } value={this.state.selected} onChange={this.onSelect} />
+      </div>
     )
   }
 }
