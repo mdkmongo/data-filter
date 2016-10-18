@@ -4,8 +4,6 @@ import { fetchDoctorsIfNeeded } from '../actions/DoctorActions';
 import MobileDoctors from '../components/MobileDoctors';
 import Doctors from '../components/Doctors';
 import { CLIENT_ID } from '../constants/Config';
-console.log(CLIENT_ID);
-
 
 const propTypes = {
   isMobile: PropTypes.bool,
