@@ -1,14 +1,23 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-// import { fetchDoctorsIfNeeded } from '../actions/DoctorActions';
+import { fetchDoctorsIfNeeded } from '../actions/DoctorActions';
 import MobileDoctors from '../components/MobileDoctors';
 import Doctors from '../components/Doctors';
+import { CLIENT_ID } from '../constants/Config';
+console.log(CLIENT_ID);
+
 
 const propTypes = {
   isMobile: PropTypes.bool,
 };
 
 class DoctorsContainer extends Component {
+
+  componentDidMount() {
+    const { dispatch } = this.props
+    dispatch(fetchDoctorsIfNeeded(CLIENT_ID))
+  }
+
   render() {
     const { isMobile } = this.props;
     if (isMobile) {
