@@ -2,3 +2,5 @@
 npm-debug.log
 notepad.txt
 *.DS_Store
+/public/js
+/public/css

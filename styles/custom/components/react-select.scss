@@ -136,16 +136,15 @@ $color_blue_ribbon_approx: #0071e6;
 }
 .is-open {
   .Select-arrow {
-    border-top-color: $color_storm_dust_approx;
   }
   > .Select-control {
     //Instead of the line below you could use @include border-bottom-right-radius($radius)
     border-bottom-right-radius: 0;
     //Instead of the line below you could use @include border-bottom-left-radius($radius)
     border-bottom-left-radius: 0;
+    border-bottom-color: transparent;
     background: $white;
     > .Select-arrow {
-      border-color: transparent transparent $color_mountain_mist_approx;
       border-width: 0 5px 5px;
     }
   }

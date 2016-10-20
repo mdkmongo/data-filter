@@ -45,7 +45,6 @@ class AppContainer extends Component {
 
     return (
       <div>
-        <NavContainer />
         <Header head={'Health Care Provider Directory'} subhead={'Find a health care provider with experience treating Eczema'} />
         {this.renderContent()}
       </div>

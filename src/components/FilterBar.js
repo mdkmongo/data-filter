@@ -43,9 +43,6 @@ class FilterBar extends Component {
 
   renderCustomFilters() {
     const { filters } = this.props;
-    if (!this.props.filtersVisible) {
-      return;
-    }
     return (
       filters.map(filter =>
         <SelectContainer
@@ -69,7 +66,9 @@ class FilterBar extends Component {
             {this.renderToggleButton()}
           </div>
         </div>
-        {this.renderCustomFilters()}
+        <div className="customFilters" style={{display: (this.props.filtersVisible ? 'block' : 'none')}}>
+          {this.renderCustomFilters()}
+        </div>
       </div>
     )
   }
