@@ -1,6 +1,6 @@
 import * as types from '../constants/ActionTypes';
 
-import { includes, remove, values, flatten, forEach } from 'lodash';
+import { values, flatten } from 'lodash';
 
 
 function updateFilters(filters) {
@@ -13,5 +13,11 @@ function updateFilters(filters) {
 export default function parseFilters(filters) {
   return dispatch => {
     dispatch(updateFilters(flatten(values(filters))));
+  }
+}
+
+export function toggleFilters() {
+  return {
+    type: types.TOGGLE_FILTERS
   }
 }

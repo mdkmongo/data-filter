@@ -7,11 +7,13 @@ import navigator from '../reducers/navigator';
 import settings from '../reducers/settings';
 import activeFilters from '../reducers/activeFilters';
 import filters from '../reducers/filters';
+import filterUI from '../reducers/filterUI';
 
 const rootReducer = combineReducers({
   authed,
   doctors,
   filters,
+  filterUI,
   environment,
   activeFilters,
   navigator,

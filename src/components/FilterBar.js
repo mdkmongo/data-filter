@@ -1,28 +1,51 @@
 import React, { Component, PropTypes } from 'react';
 
 import SelectContainer from '../containers/SelectContainer';
+import Button from '../components/Button';
 
-import parseFilters from '../actions/FilterActions';
-
-import { includes, remove, values, flatten, forEach } from 'lodash';
-
+import { toggleFilters } from '../actions/FilterActions';
 
 class FilterBar extends Component {
 
   activeFilters = {};
 
   handleChange = (name, values) => {
-    const { dispatch } = this.props;
-    if (values.length > 0) {
-      this.activeFilters[name] = values.map(val => val.id)
-    } else {
-      this.activeFilters[name] = values.id;
-    }
-    dispatch(parseFilters(this.activeFilters));
+    this.props.handleChange(name,values);
   }
 
-  renderContent() {
+  handleClick = () => {
+    const { dispatch } = this.props;
+    dispatch(toggleFilters());
+  }
+
+  renderStateFilter() {
+    const { usStates } = this.props
+    return (
+      <SelectContainer
+        name={'State'}
+        options={usStates}
+        multi={true}
+        handleChange={this.handleChange}
+        clearable={true}
+        searchable={true}
+      />
+    )
+  }
+
+  renderToggleButton() {
+    return (
+      <Button
+        text={this.props.filtersVisible ? 'Hide Filters' : 'Show Filters'}
+        onClick={this.handleClick}
+      />
+    )
+  }
+
+  renderCustomFilters() {
     const { filters } = this.props;
+    if (!this.props.filtersVisible) {
+      return;
+    }
     return (
       filters.map(filter =>
         <SelectContainer
@@ -40,7 +63,13 @@ class FilterBar extends Component {
   render() {
     return (
       <div className="FilterBar">
-        {this.renderContent()}
+        <div className="statesFilter">
+          {this.renderStateFilter()}
+          <div className="filterToggleButton">
+            {this.renderToggleButton()}
+          </div>
+        </div>
+        {this.renderCustomFilters()}
       </div>
     )
   }

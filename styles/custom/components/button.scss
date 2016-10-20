@@ -1,0 +1,19 @@
+.button button {
+  flex: 1 1 auto;
+  padding: 10px;
+  border: 2px solid #0098db;
+  text-align: center;
+  text-transform: uppercase;
+  position: relative;
+  overflow:hidden;
+  transition: .3s;
+  background: transparent;
+  outline: none;
+  font-family: inherit;
+  font-family: 'Open Sans', sans-serif;
+  letter-spacing: .04em;
+  color: #0098db;
+  &:hover {
+    cursor: pointer;
+  }
+}

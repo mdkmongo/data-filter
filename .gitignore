@@ -1,2 +1,4 @@
 /node_modules
 npm-debug.log
+notepad.txt
+*.DS_Store

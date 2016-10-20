@@ -1,0 +1,12 @@
+.statesFilter {
+  display: flex;
+  align-items: flex-end;
+  .space {
+    min-width: 50%;
+    padding: 0;
+  }
+  .filterToggleButton {
+    width: 20%;
+    margin-left: 10px;
+  }
+}
