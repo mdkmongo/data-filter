@@ -40,7 +40,7 @@ const getFilteredListings = (listings, activeFilters, filters) => {
 
 const filterListings = (listings, filter) => {
   return listings.filter((listing) => {
-    return listing[filter.name] === filter.value;
+    return listing[filter.name].includes(filter.value);
   })
 }
 

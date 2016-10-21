@@ -1,9 +1,13 @@
 .statesFilter {
   display: flex;
   align-items: flex-end;
+  justify-content: center;
   .space {
     min-width: 50%;
     padding: 0;
+    .label {
+      display: none;
+    }
   }
   .filterToggleButton {
     width: 20%;

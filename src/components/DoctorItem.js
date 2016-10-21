@@ -5,7 +5,7 @@ const DoctorItem = ({payment_methods, languages_spoken, type_of_practice, office
   return (
     <div className='doctor-item flex'>
       <div className='half'>
-        <h4>{first_name + ' ' + last_name}</h4>
+        <h4>{designation + ' ' + first_name + ' ' + last_name}</h4>
         <h5>{practice_name}</h5>
         <div className='flex space'>
           <div className='half'>
@@ -19,9 +19,13 @@ const DoctorItem = ({payment_methods, languages_spoken, type_of_practice, office
         </div>
       </div>
       <div className='half space'>
-        <div className='cols'>
-          <p>{type_of_practice}</p>
-          <p>{payment_methods}</p>
+        <div className='cols flex'>
+          <div className="col">
+            <p>{type_of_practice}</p>
+          </div>
+          <div className="col">
+            {payment_methods.map(method => <p key={method} >{method}</p>)}
+          </div>
         </div>
       </div>
     </div>

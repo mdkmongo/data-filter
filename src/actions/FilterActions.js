@@ -21,3 +21,9 @@ export function toggleFilters() {
     type: types.TOGGLE_FILTERS
   }
 }
+
+export function clearFilters() {
+  return {
+    type: types.CLEAR_FILTERS
+  }
+}

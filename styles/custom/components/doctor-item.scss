@@ -1,13 +1,14 @@
 h4 {
   font-weight: 600;
-  font-size: 20px;
+  font-size: 16px;
   color: inherit;
 }
 
 h5 {
   color: $light;
-  font-size: 14px;
+  font-size: 12px;
   text-transform: uppercase;
+  margin-top: .5em;
 }
 
 p {
@@ -17,5 +18,8 @@ p {
 
 .doctor-item {
   align-items: flex-end;
-  padding: 2rem 0;
+  padding: 2em 1em;
+  &:not(:last-child) {
+    border-bottom: 1px solid lighten($light,90%);
+  }
 }

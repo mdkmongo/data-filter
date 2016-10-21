@@ -4,6 +4,7 @@ import SelectContainer from '../containers/SelectContainer';
 import Button from '../components/Button';
 
 import { toggleFilters } from '../actions/FilterActions';
+import { clearFilters } from '../actions/FilterActions';
 
 class FilterBar extends Component {
 
@@ -16,6 +17,11 @@ class FilterBar extends Component {
   handleClick = () => {
     const { dispatch } = this.props;
     dispatch(toggleFilters());
+  }
+
+  clearFilters = () => {
+    const { dispatch } = this.props;
+    dispatch(clearFilters());
   }
 
   renderStateFilter() {
@@ -37,6 +43,15 @@ class FilterBar extends Component {
       <Button
         text={this.props.filtersVisible ? 'Hide Filters' : 'Show Filters'}
         onClick={this.handleClick}
+      />
+    )
+  }
+
+  renderClearFiltersButton() {
+    return (
+      <Button
+        text={'Clear Filters'}
+        onClick={this.clearFilters}
       />
     )
   }

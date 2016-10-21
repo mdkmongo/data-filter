@@ -10,6 +10,10 @@ export default function activeFilters(state = initialState, action) {
       return { ...state, 
         filters: action.filters
       }
+    case types.CLEAR_FILTERS:
+      return { ...state,
+        filters: []
+      }
     default:
       return state;
   }
