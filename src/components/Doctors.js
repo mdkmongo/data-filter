@@ -32,12 +32,13 @@ class Doctors extends Component {
   render() {
     const {
       sticky,
+      isMobile
     } = this.props;
     return (
       <div className={`doctors ${(sticky ? 'sticky' : '')}`} >
       <FilterBarContainer />
       <DoctorCount count={this.filteredListingsLength()} />
-      <DoctorsHeader />
+      <DoctorsHeader isMobile={isMobile}/>
         <div className="container">
           {this.renderContent()}
         </div>

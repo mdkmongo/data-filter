@@ -34,14 +34,6 @@ class AppContainer extends Component {
   }
   render() {
     const { height, isMobile, width } = this.props;
-    if (isMobile) {
-      return (
-        <div className="mobile" style={{ height: `${height}px`, width: `${width}px`}}>
-          {this.renderContent()}
-          <NavContainer />
-        </div>
-      );
-    }
 
     return (
       <div>

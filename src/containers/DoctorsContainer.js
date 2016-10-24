@@ -17,11 +17,6 @@ class DoctorsContainer extends Component {
   }
 
   render() {
-    const { isMobile } = this.props;
-    if (isMobile) {
-      return <MobileDoctors {...this.props} />;
-    }
-
     return <Doctors {...this.props} />;
   }
 }

@@ -1,4 +1,10 @@
 .doctors {
   max-width: 75%;
   margin: auto;
+  min-width: 960px;
+
+  @media (max-width: $breakpoint-mobile) {
+    max-width: 100%;
+    min-width: 100%;
+  }
 }

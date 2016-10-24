@@ -101,9 +101,8 @@ $color_blue_ribbon_approx: #0071e6;
 }
 .Select-control {
   background-color: $white;
-  border-color: $color_alto_approx $color_celeste_approx $color_nobel_approx;
   //Instead of the line below you could use @include border-radius($radius, $vertical-radius)
-  border: 1px solid lighten($light, 50%);
+  border: 1px solid rgba(0,0,0,.2);
   color: $nea;
   cursor: default;
   display: table;

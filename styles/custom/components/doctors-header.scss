@@ -8,4 +8,7 @@
   p {
     color: rgba(0,0,0,.5);
   }
+  @media (max-width: $breakpoint-mobile) {
+    display: none;
+  }
 }

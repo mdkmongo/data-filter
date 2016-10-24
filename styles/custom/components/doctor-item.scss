@@ -22,4 +22,12 @@ p {
     background-color: rgba(0,0,0,.03);
     border-bottom: 1px solid lighten($light,87%);
   }
+  @media (max-width: $breakpoint-mobile) {
+    .col {
+      display: block;
+      padding: .5em 0;
+      width: 100%;
+    }
+    display: block;
+  }
 }

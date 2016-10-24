@@ -76,6 +76,7 @@ class FilterBar extends Component {
     return (
       <div className="FilterBar">
         <div className="statesFilter">
+          <p>Filter by State</p>
           {this.renderStateFilter()}
           <div className="filterToggleButton">
             {this.renderToggleButton()}

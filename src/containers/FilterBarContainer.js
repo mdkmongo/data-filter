@@ -22,9 +22,6 @@ class FilterBarConainer extends Component {
   render() {
     const { isMobile } = this.props;
     const { settings } = this.props;
-    if (isMobile) {
-      return <MobileFilterBar {...this.props} />;
-    }
     return (
       <FilterBar {...this.props} handleChange={this.handleChange} />
     )
