@@ -11,9 +11,10 @@
 }
 
 .col {
-  padding: 0 2em;
+  width: 32%;
+  flex: 1;
 }
 
-.container {
-  background-color: rgba(0,0,0,.02)
+.full {
+  width: 100%;
 }

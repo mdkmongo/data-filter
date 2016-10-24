@@ -41,7 +41,7 @@ class FilterBar extends Component {
   renderToggleButton() {
     return (
       <Button
-        text={this.props.filtersVisible ? 'Hide Filters' : 'Show Filters'}
+        text={this.props.filtersVisible ? 'Show Less Filters' : 'Show More Filters'}
         onClick={this.handleClick}
       />
     )
@@ -81,7 +81,7 @@ class FilterBar extends Component {
             {this.renderToggleButton()}
           </div>
         </div>
-        <div className="customFilters" style={{display: (this.props.filtersVisible ? 'block' : 'none')}}>
+        <div className="customFilters" style={{display: (this.props.filtersVisible ? 'flex' : 'none')}}>
           {this.renderCustomFilters()}
         </div>
       </div>

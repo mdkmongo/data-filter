@@ -1,8 +1,11 @@
 .doctorsHeader {
-  display: flex;
   background-color: rgba(0,0,0,.1);
-  padding: 1em;
+  padding: 1em 2em;
+  border-bottom: 1px solid rgba(0,0,0,0.15);
+  .flex {
+    justify-content: space-between;
+  }
   p {
-    color: rgba(0,0,0,.3);
+    color: rgba(0,0,0,.5);
   }
 }

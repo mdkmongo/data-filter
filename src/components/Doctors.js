@@ -6,6 +6,8 @@ import Stickify from '../components/Stickify';
 import FilterBarContainer from '../containers/FilterBarContainer';
 import SearchContainer from '../containers/SearchContainer';
 import DoctorsHeader from '../components/DoctorsHeader';
+import DoctorCount from '../components/DoctorCount';
+
 
 class Doctors extends Component {
   componentWillMount() {
@@ -34,7 +36,8 @@ class Doctors extends Component {
     return (
       <div className={`doctors ${(sticky ? 'sticky' : '')}`} >
       <FilterBarContainer />
-      <DoctorsHeader count={this.filteredListingsLength()} />
+      <DoctorCount count={this.filteredListingsLength()} />
+      <DoctorsHeader />
         <div className="container">
           {this.renderContent()}
         </div>

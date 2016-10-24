@@ -3,26 +3,22 @@ import React, { Component, PropTypes } from 'react';
 
 
 export default class DoctorsHeader extends Component {
-
-  renderHeaders() {
-  }
   
   render() {
+    let headers = ['Name', 'Practice', 'Type of Practice', 'Payment Options', 'Contact' ];
     return (
       <div className="doctorsHeader">
-        <div className="half">
-          <p>{`${this.props.count} Doctors matched your search`}</p>
+        <div className="flex">
+        {
+          headers.map((header) => {
+            return (
+             <div key={header} className={'col'}>
+                <p>{header}</p>
+              </div>   
+            )})
+        }
         </div>
-        <div className="half">
-          <div className="flex">
-            <div className="col">
-              <p>Type of Practice</p>
-            </div>
-            <div className="col">
-              <p>Payment Options</p>
-            </div>
-          </div>
-        </div>
+
       </div>
     )
   }
