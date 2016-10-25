@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 
 import SelectContainer from '../containers/SelectContainer';
+import LocationSearchContainer from '../containers/LocationSearchContainer';
 import Button from '../components/Button';
 
 import { toggleFilters } from '../actions/FilterActions';
@@ -77,7 +78,7 @@ class FilterBar extends Component {
       <div className="FilterBar">
         <div className="statesFilter">
           <p>Filter by State</p>
-          {this.renderStateFilter()}
+          <LocationSearchContainer />
           <div className="filterToggleButton">
             {this.renderToggleButton()}
           </div>

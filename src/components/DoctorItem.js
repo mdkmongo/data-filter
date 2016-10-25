@@ -15,7 +15,7 @@ const DoctorItem = ({payment_methods, languages_spoken, type_of_practice, office
         <p>{type_of_practice}</p>
       </div>
       <div className='col'>
-        <p>{payment_methods.map(method => <p key={method} >{method}</p>)}</p>
+        {payment_methods.map(method => <p key={Math.random()} >{method}</p>)}
       </div>
       <div className='col'>
         <p><a href={`https://${practice_website}`}>{practice_website}</a></p>
