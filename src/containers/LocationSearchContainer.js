@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
 
 import { GOOGLE_MAPS_API } from '../constants/Config';
+import { connect } from 'react-redux';
 
 import Select from 'react-select';
 
-import fetch from 'isomorphic-fetch'
+import fetch from 'isomorphic-fetch';
+
+import { changeLocation, updateRadius } from '../actions/LocationActions';
 
 class LocationSearchContainer extends Component {
 
@@ -18,15 +21,19 @@ class LocationSearchContainer extends Component {
   }
 
   onLocationSelect = (location) => {
+    const { dispatch } = this.props;
     this.setState({
       location: location,
     })
+    dispatch(changeLocation(location.value));
   }
 
   onRadiusChange = (radius) => {
+    const { dispatch } = this.props;
     this.setState({
       radius: radius,
     })
+    dispatch(updateRadius(radius));
   }
 
   rads = [
@@ -43,7 +50,7 @@ class LocationSearchContainer extends Component {
     this.setState({
       isLoadingExternally: true
     })
-    return fetch(`https://maps.googleapis.com/maps/api/place/autocomplete/json?input=${input}&types=geocode&language=fr&key=${GOOGLE_MAPS_API}`)    
+    return fetch(`https://maps.googleapis.com/maps/api/place/autocomplete/json?input=${input}&types=geocode&key=${GOOGLE_MAPS_API}`)    
       .then((response) => {
         return response.json();
       }).then((json) => {
@@ -52,7 +59,6 @@ class LocationSearchContainer extends Component {
         })
         let options = [];
         json.predictions.map((prediction) => {
-          console.log(prediction)
           options.push({value: prediction.place_id, label: `${prediction.structured_formatting.main_text}, ${prediction.structured_formatting.secondary_text} ` })
         });
         return { options: options };
@@ -85,4 +91,10 @@ class LocationSearchContainer extends Component {
   }
 }
 
-export default LocationSearchContainer;
+function mapStateToProps(state) {
+  return {
+
+  }
+}
+
+export default connect(mapStateToProps)(LocationSearchContainer);

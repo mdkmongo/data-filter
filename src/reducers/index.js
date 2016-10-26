@@ -8,6 +8,7 @@ import settings from '../reducers/settings';
 import activeFilters from '../reducers/activeFilters';
 import filters from '../reducers/filters';
 import filterUI from '../reducers/filterUI';
+import { location } from '../reducers/location';
 
 const rootReducer = combineReducers({
   authed,
@@ -17,6 +18,7 @@ const rootReducer = combineReducers({
   environment,
   activeFilters,
   navigator,
+  location,
   message,
   settings,
 });

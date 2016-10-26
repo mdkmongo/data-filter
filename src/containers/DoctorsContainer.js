@@ -5,6 +5,8 @@ import MobileDoctors from '../components/MobileDoctors';
 import Doctors from '../components/Doctors';
 import { CLIENT_ID } from '../constants/Config';
 
+import geolib from 'geolib';
+
 const propTypes = {
   isMobile: PropTypes.bool,
 };
@@ -23,8 +25,9 @@ class DoctorsContainer extends Component {
 
 DoctorsContainer.propTypes = propTypes;
 
-const getFilteredListings = (listings, activeFilters, filters) => {
-  let temp = listings;
+const getFilteredListings = (listings, activeFilters, filters, location) => {
+
+  let temp = locationListings(listings, location);
   activeFilters.map((filter) => {
     if (filter) {
       temp = filterListings(temp, filters[filter])
@@ -39,20 +42,37 @@ const filterListings = (listings, filter) => {
   })
 }
 
+const locationListings = (listings, location) => {
+  if (location.lat && location.long) {
+    let radius = location.radius.value * 1609.34;
+    return listings.filter((listing) => {
+      return geolib.isPointInCircle(
+        {latitude: listing.lat, longitude: listing.long},
+        {latitude: location.lat, longitude: location.long},
+        radius
+      )
+    })
+  }
+  return listings
+}
+
 function mapStateToProps(state) {
-  const { authed, settings, entities, environment, navigator, doctors, activeFilters, filters } = state;
+  const { authed, settings, entities, environment, navigator, doctors, activeFilters, filters, location } = state;
   const { height, isMobile } = environment;
   const { query } = navigator.route;
   const { listings } = doctors;
   const { loading } = doctors;
   const { error } = doctors;
+  const { radius } = location;
+  const { lat } = location;
+  const { long } = location;
 
   return {
     authed,
     height,
     isMobile,
     listings,
-    filteredListings: getFilteredListings(listings, activeFilters.filters, filters)
+    filteredListings: getFilteredListings(listings, activeFilters.filters, filters, location),
   };
 }
 
