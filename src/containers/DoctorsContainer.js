@@ -5,11 +5,9 @@ import MobileDoctors from '../components/MobileDoctors';
 import Doctors from '../components/Doctors';
 import { CLIENT_ID } from '../constants/Config';
 
-import geolib from 'geolib';
+import { isEmpty, find, flatten } from 'lodash';
 
-const propTypes = {
-  isMobile: PropTypes.bool,
-};
+import geolib from 'geolib';
 
 class DoctorsContainer extends Component {
 
@@ -23,17 +21,42 @@ class DoctorsContainer extends Component {
   }
 }
 
-DoctorsContainer.propTypes = propTypes;
-
-const getFilteredListings = (listings, activeFilters, filters, location) => {
+const getFilteredListings = (listings, activeFilters, filters, location, activeKeyWordFilters, settings) => {
 
   let temp = locationListings(listings, location);
+  temp = keyWordFilters(temp, activeKeyWordFilters, settings.filters);
   activeFilters.map((filter) => {
     if (filter) {
       temp = filterListings(temp, filters[filter])
     } 
   })
   return temp;
+}
+
+const keyWordFilters = (listings, activeKeyWordFilters, filters) => {
+  if (isEmpty(activeKeyWordFilters)) {
+    return listings;
+  }
+  let keys = Object.keys(activeKeyWordFilters);
+  let res = [];
+
+  keys.forEach((key) => {
+    // find filter
+    if (activeKeyWordFilters[key] == '') {
+      res=listings;
+    } else {
+      let filts = filters.filter(filter => filter.id == key);
+      filts.map((filt) => {
+        filt.fields.forEach((field) => {
+          let temp = listings.filter((listing) => {
+            return listing[field].includes(activeKeyWordFilters[key])
+          })
+          res.push(temp);
+        })
+      })
+    }
+  })
+  return flatten(res);
 }
 
 const filterListings = (listings, filter) => {
@@ -57,22 +80,20 @@ const locationListings = (listings, location) => {
 }
 
 function mapStateToProps(state) {
-  const { authed, settings, entities, environment, navigator, doctors, activeFilters, filters, location } = state;
+  const { authed, settings, entities, environment, navigator, doctors, activeFilters, filters, location, activeKeyWordFilters } = state;
   const { height, isMobile } = environment;
   const { query } = navigator.route;
-  const { listings } = doctors;
-  const { loading } = doctors;
-  const { error } = doctors;
-  const { radius } = location;
-  const { lat } = location;
-  const { long } = location;
+  const { listings, loading, error } = doctors;
+  const { radius, lat, long } = location;
 
   return {
+    settings,
     authed,
     height,
     isMobile,
     listings,
-    filteredListings: getFilteredListings(listings, activeFilters.filters, filters, location),
+    activeKeyWordFilters,
+    filteredListings: getFilteredListings(listings, activeFilters.filters, filters, location, activeKeyWordFilters, settings),
   };
 }
 
