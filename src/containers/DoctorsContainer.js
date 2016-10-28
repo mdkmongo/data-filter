@@ -41,7 +41,6 @@ const keyWordFilters = (listings, activeKeyWordFilters, filters) => {
   let res = [];
 
   keys.forEach((key) => {
-    // find filter
     if (activeKeyWordFilters[key] == '') {
       res=listings;
     } else {
@@ -76,7 +75,7 @@ const locationListings = (listings, location) => {
       )
     })
   }
-  return listings
+  return listings;
 }
 
 function mapStateToProps(state) {

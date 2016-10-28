@@ -117,7 +117,7 @@ class FilterBar extends Component {
     return (
       <div className="FilterBar">
         <div className="statesFilter">
-          <p>Filter by State</p>
+          <p>Find a Provider Near You</p>
           <LocationSearchContainer />
           <div className="filterToggleButton">
             {this.renderToggleButton()}
