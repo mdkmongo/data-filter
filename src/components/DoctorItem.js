@@ -9,7 +9,6 @@ const DoctorItem = ({payment_methods, languages_spoken, type_of_practice, office
         <h4><a href="#">{des}</a></h4>
           <p>{practice_name}</p>
       </div>
-
       <div className='col'>
         <p>{type_of_practice}</p>
       </div>

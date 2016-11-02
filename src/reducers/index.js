@@ -6,6 +6,7 @@ import doctors from '../reducers/doctors';
 import environment from '../reducers/environment';
 import navigator from '../reducers/navigator';
 import settings from '../reducers/settings';
+import sort from '../reducers/sort';
 import activeFilters from '../reducers/activeFilters';
 import filters from '../reducers/filters';
 import filterUI from '../reducers/filterUI';
@@ -23,6 +24,7 @@ const rootReducer = combineReducers({
   location,
   message,
   settings,
+  sort,
 });
 
 export default rootReducer;

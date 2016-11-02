@@ -21,8 +21,7 @@ class DoctorsContainer extends Component {
   }
 }
 
-const getFilteredListings = (listings, activeFilters, filters, location, activeKeyWordFilters, settings) => {
-
+const getFilteredListings = (listings, activeFilters, filters, location, activeKeyWordFilters, settings, sortBy) => {
   let temp = locationListings(listings, location);
   temp = keyWordFilters(temp, activeKeyWordFilters, settings.filters);
   activeFilters.map((filter) => {
@@ -30,7 +29,22 @@ const getFilteredListings = (listings, activeFilters, filters, location, activeK
       temp = filterListings(temp, filters[filter])
     } 
   })
+  temp = sortListings(temp, sortBy);
   return temp;
+}
+
+const sortListings = (listings, sortBy) => {
+  if (!listings) {
+    return
+  }
+  if (sortBy.value == 'Featured') {
+    return listings.sort(listing => listing.featured = true)
+  }
+  return listings.sort((a, b) => {
+    if(a.first_name < b.first_name) return -1;
+    if(a.first_name > b.first_name) return 1;
+    return 0;
+  });
 }
 
 const keyWordFilters = (listings, activeKeyWordFilters, filters) => {
@@ -79,11 +93,12 @@ const locationListings = (listings, location) => {
 }
 
 function mapStateToProps(state) {
-  const { authed, settings, entities, environment, navigator, doctors, activeFilters, filters, location, activeKeyWordFilters } = state;
+  const { authed, settings, entities, environment, navigator, doctors, activeFilters, filters, location, activeKeyWordFilters, sort } = state;
   const { height, isMobile } = environment;
   const { query } = navigator.route;
   const { listings, loading, error } = doctors;
   const { radius, lat, long } = location;
+  const { sortBy } = sort;
 
   return {
     settings,
@@ -92,7 +107,7 @@ function mapStateToProps(state) {
     isMobile,
     listings,
     activeKeyWordFilters,
-    filteredListings: getFilteredListings(listings, activeFilters.filters, filters, location, activeKeyWordFilters, settings),
+    filteredListings: getFilteredListings(listings, activeFilters.filters, filters, location, activeKeyWordFilters, settings, sortBy),
   };
 }
 

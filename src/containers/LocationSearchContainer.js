@@ -9,6 +9,8 @@ import fetch from 'isomorphic-fetch';
 
 import { changeLocation, updateRadius } from '../actions/LocationActions';
 
+import { selectSortBy } from '../actions/SortActions'
+
 class LocationSearchContainer extends Component {
 
   constructor(props) {
@@ -17,6 +19,7 @@ class LocationSearchContainer extends Component {
       isLoadingExternally: false,
       location: this.props.location,
       radius: { value: 25, label: '25 miles' },
+      feat: { value: 'Featured', label: 'Featured Listing' },
     }
   }
 
@@ -36,6 +39,14 @@ class LocationSearchContainer extends Component {
     dispatch(updateRadius(radius));
   }
 
+  onSortChange = (feat) => {
+    const { dispatch } = this.props;
+    this.setState({
+      feat: feat,
+    })
+    dispatch(selectSortBy(feat));
+  }
+
   rads = [
     { value: 1, label: '1 miles'},
     { value: 5, label: '5 miles'},
@@ -44,6 +55,11 @@ class LocationSearchContainer extends Component {
     { value: 50, label: '50 miles'},
     { value: 100, label: '100 miles'},
     { value: 200, label: '200 miles'},
+  ]
+  
+  feats = [
+    { value: 'Featured', label: 'Featured Listing' },
+    { value: 'All', label: 'Any' },
   ]
 
   getAddress = (input) => {
@@ -85,6 +101,16 @@ class LocationSearchContainer extends Component {
           searchable={false}
           clearable={false}
           placeholder={'Radius'}
+        />
+        <Select
+          name={'Featured Toggle'}
+          options={this.feats}
+          value={this.state.feat}
+          onChange={this.onSortChange}
+          searchable={false}
+          multi={false}
+          placeholder={'Sort by'}
+          clearable={false}
         />
       </div>
     )
