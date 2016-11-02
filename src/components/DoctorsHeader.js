@@ -5,7 +5,7 @@ import React, { Component, PropTypes } from 'react';
 export default class DoctorsHeader extends Component {
   
   render() {
-    let headers = ['Name', 'Practice', 'Type of Practice', 'Payment Options', 'Contact' ];
+    let headers = ['Name', 'Type of Practice', 'Payment Options', 'Contact' ];
     return (
       <div className="doctorsHeader">
         <div className="flex">

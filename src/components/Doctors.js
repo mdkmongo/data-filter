@@ -4,7 +4,6 @@ import React, { Component, PropTypes } from 'react';
 import DoctorItem from '../components/DoctorItem';
 import Stickify from '../components/Stickify';
 import FilterBarContainer from '../containers/FilterBarContainer';
-import SearchContainer from '../containers/SearchContainer';
 import DoctorsHeader from '../components/DoctorsHeader';
 import DoctorCount from '../components/DoctorCount';
 

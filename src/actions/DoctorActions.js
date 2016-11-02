@@ -26,7 +26,7 @@ export function fetchDoctors(siteID) {
 
     dispatch(fetchDoctorsRequest(siteID))
 
-    return fetch(`http://localhost:3000/api/listings/${siteID}`)
+    return fetch(`http://localhost:3000/api/listings?siteId=${siteID}`)
       .then(response => response.json())
       .then(json => 
         dispatch(fetchDoctorsSuccess(json))

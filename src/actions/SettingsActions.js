@@ -2,6 +2,7 @@ import * as types from '../constants/ActionTypes';
 
 const filters = [
   {
+    id: 1,
     name: 'Payment Methods',
     type: 'Checkbox',
     options: [
@@ -33,6 +34,7 @@ const filters = [
     ]
   },
   {
+    id: 2,
     name: 'Languages Spoken',
     type: 'Select',
     options: [
@@ -63,6 +65,12 @@ const filters = [
         label: 'No',
       }
     ]
+  },
+  {
+    id: 4,
+    name: 'Doctor or Practice Search',
+    type: 'Keyword',
+    fields: ['first_name', 'last_name', 'practice_name'],
   }
 ]
 
