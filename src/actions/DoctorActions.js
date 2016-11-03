@@ -26,7 +26,7 @@ export function fetchDoctors(siteID) {
 
     dispatch(fetchDoctorsRequest(siteID))
 
-    return fetch(`http://localhost:3000/api/listings?siteId=${siteID}`)
+    return fetch(`http://ec2-35-162-31-26.us-west-2.compute.amazonaws.com:3000/api/listings?siteId=${siteID}`)
       .then(response => response.json())
       .then(json => 
         dispatch(fetchDoctorsSuccess(json))
@@ -55,5 +55,17 @@ export function fetchDoctorsIfNeeded(siteID) {
       // Let the calling code know there's nothing to wait for.
       return Promise.resolve()
     }
+  }
+}
+
+export function filterDoctorsStart() {
+  return {
+    type: types.FILTER_DOCTORS_START,
+  }
+}
+
+export function filterDoctorsFinish() {
+  return {
+    type: types.FILTER_DOCTORS_FINISH,
   }
 }

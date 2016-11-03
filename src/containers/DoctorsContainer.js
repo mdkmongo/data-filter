@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { fetchDoctorsIfNeeded } from '../actions/DoctorActions';
+import { fetchDoctorsIfNeeded, filterDoctorsStart, filterDoctorsFinish } from '../actions/DoctorActions';
 import MobileDoctors from '../components/MobileDoctors';
 import Doctors from '../components/Doctors';
 import { CLIENT_ID } from '../constants/Config';
@@ -62,7 +62,9 @@ const keyWordFilters = (listings, activeKeyWordFilters, filters) => {
       filts.map((filt) => {
         filt.fields.forEach((field) => {
           let temp = listings.filter((listing) => {
-            return listing[field].includes(activeKeyWordFilters[key])
+            if (listing[field]) {
+              return listing[field].includes(activeKeyWordFilters[key])
+            }
           })
           res.push(temp);
         })
@@ -74,7 +76,9 @@ const keyWordFilters = (listings, activeKeyWordFilters, filters) => {
 
 const filterListings = (listings, filter) => {
   return listings.filter((listing) => {
-    return listing[filter.name].includes(filter.value);
+    if (listing[filter.name]) {
+      return listing[filter.name].includes(filter.value);
+    }
   })
 }
 
@@ -82,11 +86,13 @@ const locationListings = (listings, location) => {
   if (location.lat && location.long) {
     let radius = location.radius.value * 1609.34;
     return listings.filter((listing) => {
-      return geolib.isPointInCircle(
-        {latitude: listing.lat, longitude: listing.long},
-        {latitude: location.lat, longitude: location.long},
-        radius
-      )
+      if (listing.lat && listing.long) {
+        return geolib.isPointInCircle(
+          {latitude: listing.lat, longitude: listing.long},
+          {latitude: location.lat, longitude: location.long},
+          radius
+        )
+      }
     })
   }
   return listings;
