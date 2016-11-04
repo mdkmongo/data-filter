@@ -24,14 +24,14 @@ class Doctors extends Component {
 
   filteredListingsLength() {
     const { filteredListings } = this.props
-
     return filteredListings ? filteredListings.length : 0;
   }
 
   render() {
     const {
       sticky,
-      isMobile
+      isMobile,
+      filteredListings,
     } = this.props;
     return (
       <div className={`doctors ${(sticky ? 'sticky' : '')}`} >

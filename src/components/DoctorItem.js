@@ -1,11 +1,12 @@
 import React from 'react';
 
 
-const DoctorItem = ({payment_methods, languages_spoken, type_of_practice, office_managers_name, practice_website, practice_email, practice_phone, zip_code, state, city, address_2, address_1, country, practice_name, taking_patients, sex, email , designation, last_name, first_name}) => {
+const DoctorItem = ({payment_methods, languages_spoken, type_of_practice, office_managers_name, practice_website, practice_email, practice_phone, zip_code, state, city, address_2, address_1, country, practice_name, taking_patients, sex, email , designation, last_name, first_name, featured}) => {
   let des = `${designation}. ` + first_name + ' ' + last_name;
   return (
     <div className='doctor-item flex'>
       <div className='col'>
+        <span>{featured ? <img src="http://localhost:3000/images/star.svg" /> : ''}</span>
         <h4><a href="#">{des}</a></h4>
           <p>{practice_name}</p>
       </div>

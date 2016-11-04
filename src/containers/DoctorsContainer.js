@@ -22,29 +22,34 @@ class DoctorsContainer extends Component {
 }
 
 const getFilteredListings = (listings, activeFilters, filters, location, activeKeyWordFilters, settings, sortBy) => {
-  let temp = locationListings(listings, location);
-  temp = keyWordFilters(temp, activeKeyWordFilters, settings.filters);
+  let locationFiltered = locationListings(listings, location);
+  let sorted = sortListings(locationFiltered, sortBy);
+  let keyWordFiltered = keyWordFilters(sorted, activeKeyWordFilters, settings.filters);
+  let filtered = keyWordFiltered;
   activeFilters.map((filter) => {
     if (filter) {
-      temp = filterListings(temp, filters[filter])
+      filtered = filterListings(filtered, filters[filter])
     } 
   })
-  temp = sortListings(temp, sortBy);
-  return temp;
+  return filtered ? filtered : listings;
 }
 
 const sortListings = (listings, sortBy) => {
   if (!listings) {
     return
   }
-  if (sortBy.value == 'Featured') {
-    return listings.sort(listing => listing.featured = true)
+  const toSort = listings;
+  if (sortBy.value === 'Featured') {
+    return toSort.slice().sort((a,b) => {
+      return (a.featured === b.featured)? 0 : a.featured? -1 : 1;
+    })
+  } else {
+    return toSort.slice().sort((a, b) => {
+      if(a.last_name < b.last_name) return -1;
+      if(a.last_name > b.last_name) return 1;
+      return 0;
+    });
   }
-  return listings.sort((a, b) => {
-    if(a.first_name < b.first_name) return -1;
-    if(a.first_name > b.first_name) return 1;
-    return 0;
-  });
 }
 
 const keyWordFilters = (listings, activeKeyWordFilters, filters) => {
@@ -101,18 +106,15 @@ const locationListings = (listings, location) => {
 function mapStateToProps(state) {
   const { authed, settings, entities, environment, navigator, doctors, activeFilters, filters, location, activeKeyWordFilters, sort } = state;
   const { height, isMobile } = environment;
-  const { query } = navigator.route;
   const { listings, loading, error } = doctors;
   const { radius, lat, long } = location;
   const { sortBy } = sort;
 
   return {
-    settings,
     authed,
-    height,
     isMobile,
-    listings,
     activeKeyWordFilters,
+    filters,
     filteredListings: getFilteredListings(listings, activeFilters.filters, filters, location, activeKeyWordFilters, settings, sortBy),
   };
 }
