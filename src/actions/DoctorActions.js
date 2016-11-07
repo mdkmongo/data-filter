@@ -2,7 +2,7 @@ import * as types from '../constants/ActionTypes';
 
 import fetch from 'isomorphic-fetch'
 
-import CLIENT_ID from '../constants/Config';
+import { CLIENT_ID, API_ADDRESS } from '../constants/Config';
 
 
 
@@ -26,7 +26,7 @@ export function fetchDoctors(siteID) {
 
     dispatch(fetchDoctorsRequest(siteID))
 
-    return fetch(`http://ec2-35-162-31-26.us-west-2.compute.amazonaws.com:3000/api/listings?siteId=${siteID}`)
+    return fetch(`${API_ADDRESS}/api/listings?siteId=${siteID}`)
       .then(response => response.json())
       .then(json => 
         dispatch(fetchDoctorsSuccess(json))
