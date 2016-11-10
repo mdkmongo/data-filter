@@ -1,61 +1,36 @@
 import * as types from '../constants/ActionTypes';
-import Cookies from 'js-cookie';
-import CLIENT_ID from '../constants/Config';
+import { CLIENT_ID, API_USER_ID, API_USERNAME, API_PASSWORD, API_ADDRESS } from '../constants/Config';
 
-const COOKIE_PATH = 'accessToken';
-
-function authUser(accessToken) {
+function loginUser() {
   return dispatch =>
-    dispatch(fetchAuthedUser(accessToken));
-}
-
-function fetchAuthedUser(accessToken) {
-  // NEED TO FETCH FOR API LOGIN by accessToken
-  // return dispatch =>
-  //   fetch(`//api.soundcloud.com/me?oauth_token=${accessToken}`)
-  //     .then(response => response.json())
-  //     .then(json => dispatch(receiveAuthedUserPre(accessToken, json)))
-  //     .catch(err => { throw err; });
+    fetch(`${API_ADDRESS}/api/auth/login`, {
+      method: 'POST',
+      headers: {  
+        "Content-type": "application/x-www-form-urlencoded; charset=UTF-8"  
+      },  
+      body: `password=${API_PASSWORD}&username=${API_USERNAME}&_id=${API_USER_ID}`,
+    })
+      .then(response => response.json())
+      .then(json => dispatch(receiveAccessToken(json.token)))
+      .catch(err => { throw err; });
 }
 
 export function initAuth() {
   return dispatch => {
-    const accessToken = Cookies.get(COOKIE_PATH);
-    if (accessToken) {
-      return dispatch(authUser(accessToken, false));
+    const siteStorage = localStorage;
+    const { token } = siteStorage;
+    if (!token) {
+      console.log('loging in')
+      return dispatch(loginUser());
     }
     return null;
   };
 }
 
-export function loginUser() {
-  return dispatch => {
-    // Fetch API LOGIN CALL
-  };
-}
-
-export function logoutUser() {
-  // return (dispatch, getState) => {
-  //   Cookies.remove(COOKIE_PATH);
-  //   const { authed, entities, navigator } = getState();
-  //   const { path } = navigator.route;
-  //   const playlists = authed.playlists.map((playlistId) =>
-  //     entities.playlists[playlistId].title + AUTHED_PLAYLIST_SUFFIX
-  //   );
-
-  //   clearInterval(streamInterval);
-
-  //   if (path[0] === 'me') {
-  //     dispatch(navigateTo({ path: ['songs'] }));
-  //   }
-
-  //   return dispatch(resetAuthed(playlists));
-  // };
-}
-
-function receiveAccessToken(accessToken) {
+function receiveAccessToken(token) {
+  localStorage.token = token;
   return {
     type: types.RECEIVE_ACCESS_TOKEN,
-    accessToken,
+    token,
   };
 }
