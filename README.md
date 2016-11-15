@@ -8,10 +8,14 @@ This repo contains the front end ui for the [Health Care Provider Directory API]
 3. visit `http://localhost:8080`
 
 ## Testing
-1. For command line tests, `$ npm run test`
+1. For command line tests, `npm run test`
 
 ## Linting
-1. To run the linter, `$ npm run lint`
+1. To run the linter, `npm run lint`
+
+## Building
+1. Build uses `webpack.prod.config`
+2. To build, `npm run build`
 
 ## Reference
 1. [Webpack](https://webpack.github.io/docs)
